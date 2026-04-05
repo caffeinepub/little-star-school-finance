@@ -1,0 +1,59 @@
+type RangeSummary = 
+ record {
+   expenseCount: nat;
+   feeCount: nat;
+   fromDate: text;
+   netBalance: int;
+   toDate: text;
+   totalExpenses: nat;
+   totalFees: nat;
+ };
+type FeeEntry = 
+ record {
+   amount: nat;
+   className: text;
+   createdAt: int;
+   date: text;
+   feeType: text;
+   id: nat;
+   paymentMode: text;
+   receiptNumber: text;
+   studentName: text;
+ };
+type ExpenseEntry = 
+ record {
+   amount: nat;
+   createdAt: int;
+   date: text;
+   description: text;
+   id: nat;
+   title: text;
+ };
+type DailySummary = 
+ record {
+   date: text;
+   expenseCount: nat;
+   feeCount: nat;
+   netBalance: int;
+   totalExpenses: nat;
+   totalFees: nat;
+ };
+service : {
+  addExpenseEntry: (title: text, description: text, amount: nat, date: 
+   text, currentHourIST: nat) -> (ExpenseEntry);
+  addFeeEntry: (studentName: text, className: text, feeType: text, amount:
+   nat, paymentMode: text, date: text, currentHourIST: nat) -> (FeeEntry);
+  checkDayStatus: (currentHourIST: nat) -> (bool) query;
+  getDailySummary: (date: text) -> (DailySummary) query;
+  getExpensesByDate: (date: text) -> (vec ExpenseEntry) query;
+  getExpensesByDateRange: (fromDate: text, toDate: text) ->
+   (vec ExpenseEntry) query;
+  getFeesByDate: (date: text) -> (vec FeeEntry) query;
+  getFeesByDateRange: (fromDate: text, toDate: text) -> (vec FeeEntry) query;
+  getRangeSummary: (fromDate: text, toDate: text) -> (RangeSummary) query;
+  getSchoolLogoUrl: () -> (text) query;
+  isLoggedIn: () -> (bool) query;
+  login: (username: text, password: text) -> (bool);
+  logout: () -> ();
+  setSchoolLogoUrl: (url: text) -> ();
+}

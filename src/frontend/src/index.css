@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/assets/fonts/PlusJakartaSans.woff2") format("woff2");
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("/assets/fonts/DMSans.woff2") format("woff2");
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+
+    /* Light mode — deep navy sidebar + light-gray main area */
+    --background: 0.96 0.005 240;
+    --foreground: 0.18 0.025 250;
+    --card: 1 0 0;
+    --card-foreground: 0.18 0.025 250;
+    --popover: 1 0 0;
+    --popover-foreground: 0.18 0.025 250;
+
+    /* Primary: deep navy #163A73 */
+    --primary: 0.3 0.1 260;
+    --primary-foreground: 0.98 0 0;
+
+    --secondary: 0.94 0.01 240;
+    --secondary-foreground: 0.3 0.1 260;
+
+    --muted: 0.93 0.008 240;
+    --muted-foreground: 0.52 0.02 240;
+
+    --accent: 0.91 0.012 240;
+    --accent-foreground: 0.25 0.08 260;
+
+    --destructive: 0.57 0.22 27;
+    --destructive-foreground: 0.98 0 0;
+
+    --border: 0.88 0.012 240;
+    --input: 0.88 0.012 240;
+    --ring: 0.45 0.12 260;
+
+    /* Chart colors */
+    --chart-1: 0.52 0.18 255;
+    --chart-2: 0.68 0.19 47;
+    --chart-3: 0.58 0.16 150;
+    --chart-4: 0.76 0.14 80;
+    --chart-5: 0.62 0.2 30;
+
+    /* Sidebar: deep navy */
+    --sidebar: 0.28 0.09 258;
+    --sidebar-foreground: 0.96 0.01 240;
+    --sidebar-primary: 0.22 0.1 265;
+    --sidebar-primary-foreground: 1 0 0;
+    --sidebar-accent: 0.24 0.09 260;
+    --sidebar-accent-foreground: 0.97 0.005 240;
+    --sidebar-border: 0.22 0.07 260;
+    --sidebar-ring: 0.55 0.12 255;
+
+    /* KPI tile colors */
+    --kpi-blue-bg: 0.94 0.04 255;
+    --kpi-blue-icon: 0.4 0.16 255;
+    --kpi-orange-bg: 0.96 0.05 50;
+    --kpi-orange-icon: 0.62 0.2 45;
+    --kpi-green-bg: 0.94 0.07 155;
+    --kpi-green-icon: 0.48 0.18 150;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Plus Jakarta Sans", "DM Sans", ui-sans-serif, system-ui,
+      sans-serif;
+  }
+}
+
+/* Print styles */
+@media print {
+  body > #root > * {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .print-receipt {
+    display: block !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    z-index: 9999;
+    padding: 2rem;
+  }
+}
+
+.print-only {
+  display: none;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(var(--border));
+  border-radius: 3px;
+}
